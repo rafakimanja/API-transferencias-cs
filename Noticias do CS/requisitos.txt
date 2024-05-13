@@ -1,0 +1,28 @@
+	Requisitos
+
+1 - pegar os dados do HLTV: https://www.hltv.org/transfers
+
+2 - pegar as informações: Nome do Jogador, Time que esta/estava, Time que foi/banco/free agent
+
+3 - salvar os dados em um banco de dados
+
+4 - mandar os dados para uma página web
+
+5 - mandar os dados para um grupo no WhatsApp
+
+
+--------------------------------------------
+
+
+	Programação
+
+- Criar um servidor Django
+
+- Criar uma API
+
+- Realizar raspagem dos dados
+
+- Criar uma pagina web
+
+- Criar um Bot para mandar as msg no grupo
+
