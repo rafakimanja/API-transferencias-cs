@@ -1,3 +1,4 @@
+
 """
 URL configuration for noticiasCS project.
 
@@ -16,7 +17,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from API.views import main, JogadoresViewSet
+from API.views import JogadoresViewSet
 from rest_framework import routers
 
 router = routers.DefaultRouter()
@@ -24,6 +25,5 @@ router.register('jogadores', JogadoresViewSet, basename='Jogadores')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('main/', main, name='main'),
     path('', include(router.urls))
 ]

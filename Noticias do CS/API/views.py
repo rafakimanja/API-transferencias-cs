@@ -1,4 +1,6 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
+from rest_framework.views import Response, status
+from rest_framework.pagination import LimitOffsetPagination
 from django.http import HttpResponse
 from API.models import Jogador
 from API.serializer import JogadorSerializer
@@ -105,3 +107,17 @@ def main(request):
 class JogadoresViewSet(viewsets.ModelViewSet):
     queryset = Jogador.objects.all()
     serializer_class = JogadorSerializer
+    pagination_class = LimitOffsetPagination
+    filter_backends = [filters.OrderingFilter]
+    ordering_fields = ['id']
+
+    def list(self, request):
+        try:
+            main(request)
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+        queryset = self.filter_queryset(self.get_queryset())
+        page = self.paginate_queryset(queryset)
+        serializer = self.get_serializer(page, many=True)
+        return self.get_paginated_response(serializer.data)
